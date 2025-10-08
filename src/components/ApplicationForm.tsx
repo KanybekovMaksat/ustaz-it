@@ -1,45 +1,65 @@
-import { useState } from 'react';
-import { X, Send, User, Mail, Phone, MessageSquare } from 'lucide-react';
+import { useState } from 'react'
+import { X, Send, User, Phone } from 'lucide-react'
 
 interface ApplicationFormProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen: boolean
+  onClose: () => void
 }
 
-export default function ApplicationForm({ isOpen, onClose }: ApplicationFormProps) {
+export default function ApplicationForm({
+  isOpen,
+  onClose,
+}: ApplicationFormProps) {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     phone: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+    e.preventDefault()
+    setIsSubmitting(true)
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // Отправляем только имя и телефон
+      await fetch('https://api.comtehno.kg/ustaz/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+        }),
+      })
+    } catch (error) {
+      console.error('Ошибка при отправке заявки:', error)
+    }
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    // Имитируем плавную анимацию завершения
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+
+    setIsSubmitting(false)
+    setIsSubmitted(true)
 
     setTimeout(() => {
-      setIsSubmitted(false);
-      onClose();
-      setFormData({ name: '', email: '', phone: '', message: '' });
-    }, 3000);
-  };
+      setIsSubmitted(false)
+      onClose()
+      setFormData({ name: '', phone: '' })
+    }, 3000)
+  }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-    }));
-  };
+    }))
+  }
 
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in">
@@ -58,21 +78,35 @@ export default function ApplicationForm({ isOpen, onClose }: ApplicationFormProp
           {isSubmitted ? (
             <div className="text-center py-12">
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-10 h-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <svg
+                  className="w-10 h-10 text-green-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">Заявка отправлена!</h3>
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                Заявка отправлена!
+              </h3>
               <p className="text-slate-600 text-lg">
-                Мы свяжемся с вами в течение 24 часов и отправим ссылку на вебинар
+                Мы свяжемся с вами в течение 24 часов и отправим ссылку на
+                вебинар
               </p>
             </div>
           ) : (
             <>
               <div className="mb-8">
                 <p className="text-slate-600 text-lg leading-relaxed">
-                  Заполните форму, и мы отправим вам ссылку на бесплатный вводный вебинар. На нем вы узнаете все о
-                  курсе и сможете задать любые вопросы.
+                  Заполните форму, и мы отправим вам ссылку на бесплатный
+                  вводный вебинар. На нем вы узнаете все о курсе и сможете
+                  задать любые вопросы.
                 </p>
               </div>
 
@@ -94,25 +128,6 @@ export default function ApplicationForm({ isOpen, onClose }: ApplicationFormProp
                     placeholder="Введите ваше имя"
                   />
                 </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    <span className="flex items-center gap-2">
-                      <Mail className="w-4 h-4" />
-                      Email *
-                    </span>
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-slate-900"
-                    placeholder="example@email.com"
-                  />
-                </div>
-
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">
                     <span className="flex items-center gap-2">
@@ -127,27 +142,9 @@ export default function ApplicationForm({ isOpen, onClose }: ApplicationFormProp
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-slate-900"
-                    placeholder="+7 (___) ___-__-__"
+                    placeholder="+996 (___) ___-___"
                   />
                 </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    <span className="flex items-center gap-2">
-                      <MessageSquare className="w-4 h-4" />
-                      Сообщение (необязательно)
-                    </span>
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={4}
-                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors text-slate-900 resize-none"
-                    placeholder="Расскажите о себе или задайте вопрос"
-                  />
-                </div>
-
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -167,7 +164,8 @@ export default function ApplicationForm({ isOpen, onClose }: ApplicationFormProp
                 </button>
 
                 <p className="text-xs text-slate-500 text-center">
-                  Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности и обработкой персональных данных
+                  Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                  и обработкой персональных данных
                 </p>
               </form>
 
@@ -199,5 +197,5 @@ export default function ApplicationForm({ isOpen, onClose }: ApplicationFormProp
         </div>
       </div>
     </div>
-  );
+  )
 }

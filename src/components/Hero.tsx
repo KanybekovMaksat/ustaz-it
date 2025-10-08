@@ -1,8 +1,8 @@
-import { ArrowRight, Code2, Rocket } from 'lucide-react';
-import Countdown from './CountDown';
+import { ArrowRight, Code2, Rocket } from 'lucide-react'
+import Countdown from './CountDown'
 
 interface HeroProps {
-  onCTAClick: () => void;
+  onCTAClick: () => void
 }
 
 export default function Hero({ onCTAClick }: HeroProps) {
@@ -34,10 +34,10 @@ export default function Hero({ onCTAClick }: HeroProps) {
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={onCTAClick}
-                className="group bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-xl shadow-blue-500/25"
+                className="group bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-xl shadow-blue-500/25 r-md:flex-col"
               >
                 Записаться на бесплатный вебинар
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform r-md:rotate-90" />
               </button>
             </div>
 
@@ -46,7 +46,7 @@ export default function Hero({ onCTAClick }: HeroProps) {
                 <div className="flex -space-x-2">
                   <img
                     src="/logo.png"
-                    className="w-5 h-5 rounded-full"
+                    className="min-w-5 h-5 rounded-full"
                     alt=""
                   />
                 </div>
@@ -107,13 +107,13 @@ export default function Hero({ onCTAClick }: HeroProps) {
                 </div>
               </div>
 
-              <div className="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg transform rotate-3">
+              <div className="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg transform rotate-3 r-md:-right-2">
                 <div className="font-bold">80% выпускников</div>
                 <div className="text-xs">создают продукты</div>
               </div>
             </div>
 
-            <div className="absolute -bottom-4 -left-4 bg-gradient-to-br from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-lg shadow-xl transform -rotate-3">
+            <div className="absolute -bottom-4 -left-4 bg-gradient-to-br from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-lg shadow-xl transform -rotate-3 r-md:-left-2">
               <div className="font-bold text-lg">4 проекта</div>
               <div className="text-sm opacity-90">в портфолио</div>
             </div>
@@ -123,5 +123,5 @@ export default function Hero({ onCTAClick }: HeroProps) {
 
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
     </section>
-  );
+  )
 }

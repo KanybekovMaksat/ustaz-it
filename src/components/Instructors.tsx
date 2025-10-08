@@ -1,21 +1,27 @@
-import { Linkedin, Github, Award, Code2, Users, Briefcase } from 'lucide-react';
+import { Linkedin, Github, Award, Code2, Users, Briefcase } from 'lucide-react'
+import RamzanPhoto from ''
 
 export default function Instructors() {
   const instructors = [
     {
       name: 'Рамзан Малабакиев',
       role: 'Javascript Developer & It Mentor',
-      avatar: '👨‍💼',
+      avatar: '/ramzan.jpg',
       experience: '8+ лет в IT',
       company: 'Tech Leadership',
       skills: ['React.js', 'Typescript', 'Team Leadership'],
       description:
         'Опыт запуска продуктов и управления командами. Фокусируюсь на развитии инженерного мышления и предпринимательских навыков.',
       highlights: [
-        'Обучил более 200 ребят',
-        'Руководил командой из 15+ разработчиков',
-        'Спикер на технических конференциях',
+        'Выпускник Accelerate Prosperity',
+        'Обучаю на протяжении 3 лет',
+        'Создал 10+ коммерчиских проектах',
       ],
+      socialMedia: {
+        Linkedin:
+          'https://www.linkedin.com/in/%D1%80%D0%B0%D0%BC%D0%B7%D0%B0%D0%BD-%D0%BC%D0%B0%D0%BB%D0%B0%D0%B1%D0%B0%D0%BA%D0%B8%D0%B5%D0%B2-1a5587266/',
+        Github: 'https://github.com/ma1abakiev',
+      },
     },
     {
       name: 'Максат Каныбеков',
@@ -31,8 +37,12 @@ export default function Instructors() {
         'Руководил командой из 5+ разработчиков',
         'Спикер на технических конференциях',
       ],
+      socialMedia: {
+        Linkedin: '',
+        Github: '',
+      },
     },
-  ];
+  ]
 
   return (
     <section className="bg-gradient-to-br from-slate-50 to-blue-50 py-20 md:py-32">
@@ -57,7 +67,10 @@ export default function Instructors() {
               className="bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-slate-200 hover:shadow-2xl transition-all"
             >
               <div className="flex items-start gap-6 mb-8">
-                <div className="text-7xl">{instructor.avatar}</div>
+                <img
+                  className="w-[75px] h-[75px] rounded-full object-cover"
+                  src={instructor.avatar}
+                />
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold text-slate-900 mb-2">
                     {instructor.name}
@@ -120,11 +133,23 @@ export default function Instructors() {
               <div className="flex gap-3">
                 <button className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700 transition-colors">
                   <Linkedin className="w-4 h-4" />
-                  <span className="text-sm font-medium">LinkedIn</span>
+                  <a
+                    target="_blank"
+                    href={instructor.socialMedia.Linkedin}
+                    className="text-sm font-medium"
+                  >
+                    LinkedIn
+                  </a>
                 </button>
                 <button className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700 transition-colors">
                   <Github className="w-4 h-4" />
-                  <span className="text-sm font-medium">GitHub</span>
+                  <a
+                    target="_blank"
+                    href={instructor.socialMedia.Github}
+                    className="text-sm font-medium"
+                  >
+                    GitHub
+                  </a>
                 </button>
               </div>
             </div>
@@ -191,5 +216,5 @@ export default function Instructors() {
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <Code2 className="w-8 h-8 text-blue-400" />
+            <img src="/logo.png" alt="" className="w-8 h-8 rounded-full" />
               <span className="text-xl font-bold">UstaZ IT</span>
             </div>
             <p className="text-slate-400 leading-relaxed mb-6">
@@ -107,14 +107,14 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-sm">
-          <p>&copy; 2025 JavaScript Developer Course. Все права защищены.</p>
+          <p>&copy; 2025 Ustaz IT</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">
+            {/* <a href="#" className="hover:text-white transition-colors">
               Политика конфиденциальности
             </a>
             <a href="#" className="hover:text-white transition-colors">
               Условия использования
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

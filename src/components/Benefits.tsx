@@ -28,8 +28,8 @@ export default function Benefits() {
     },
     {
       icon: Target,
-      title: 'Получаешь портфолио из 3 реальных проектов',
-      description: 'To-Do приложение, блог, чат и финальный стартап-проект',
+      title: 'Получаешь портфолио из 4 реальных проектов',
+      description: 'Освоишь необходимые знания для создания своих стартапов',
       color: 'from-cyan-500 to-blue-500',
     },
     {
@@ -43,7 +43,7 @@ export default function Benefits() {
   const additionalBenefits = [
     {
       icon: Globe,
-      label: 'Онлайн-формат',
+      label: 'Гибридный формат',
     },
     {
       icon: Users,
@@ -55,7 +55,7 @@ export default function Benefits() {
     },
     {
       icon: Award,
-      label: 'Сертификат',
+      label: 'Скидки за успеваемость',
     },
   ];
 

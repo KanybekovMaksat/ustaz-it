@@ -114,7 +114,7 @@ export default function Hero({ onCTAClick }: HeroProps) {
             </div>
 
             <div className="absolute -bottom-4 -left-4 bg-gradient-to-br from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-lg shadow-xl transform -rotate-3">
-              <div className="font-bold text-lg">5 проектов</div>
+              <div className="font-bold text-lg">4 проекта</div>
               <div className="text-sm opacity-90">в портфолио</div>
             </div>
           </div>

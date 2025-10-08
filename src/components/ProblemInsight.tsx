@@ -14,12 +14,12 @@ export default function ProblemInsight() {
       label: 'компаний нанимают удаленно',
       color: 'from-blue-500 to-cyan-500',
     },
-{
-  icon: Brain,
-  stat: 'Сможете',
-  label: 'создать собственный стартап',
-  color: 'from-purple-500 to-pink-500',
-}
+    {
+      icon: Brain,
+      stat: 'Сможете',
+      label: 'создать собственный стартап',
+      color: 'from-purple-500 to-pink-500',
+    },
   ];
 
   return (

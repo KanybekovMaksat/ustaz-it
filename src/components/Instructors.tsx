@@ -26,7 +26,7 @@ export default function Instructors() {
     {
       name: 'Максат Каныбеков',
       role: 'Product Manager & Frontend Developer',
-      avatar: '👨‍💻',
+      avatar: '/maksat.png',
       experience: '10+ лет в Backend',
       company: 'Enterprise Solutions',
       skills: ['Node.js', 'Agile', 'Product Management'],
@@ -38,8 +38,8 @@ export default function Instructors() {
         'Спикер на технических конференциях',
       ],
       socialMedia: {
-        Linkedin: '',
-        Github: '',
+        Linkedin: 'https://www.linkedin.com/in/maksat-kanybekov-7b9881272/details/experience/',
+        Github: 'https://github.com/KanybekovMaksat',
       },
     },
   ]

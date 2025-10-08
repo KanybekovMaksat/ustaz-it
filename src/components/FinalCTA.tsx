@@ -1,7 +1,56 @@
 import { ArrowRight, Clock, Users, Gift } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 interface FinalCTAProps {
   onCTAClick: () => void;
+}
+
+function Countdown() {
+  // 🎯 Целевая дата (3 ноября 2025)
+  const targetDate = new Date('2025-11-03T00:00:00');
+
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+  });
+
+  useEffect(() => {
+    const updateCountdown = () => {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        setTimeLeft({ days: 0});
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      setTimeLeft({ days });
+    };
+
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(timer);
+  }, [targetDate]);
+
+  return (
+    <>
+      {timeLeft.days} {getDayWord(timeLeft.days)}
+    </>
+  );
+}
+
+function getDayWord(n) {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+
+  if (mod10 === 1 && mod100 !== 11) return 'день';
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return 'дня';
+  return 'дней';
 }
 
 export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
@@ -27,7 +76,8 @@ export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
           </h2>
 
           <p className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Пройди бесплатный вводный вебинар и реши, подходит ли тебе путь JavaScript-разработчика
+            Пройди бесплатный вводный вебинар и реши, подходит ли тебе путь
+            JavaScript-разработчика
           </p>
         </div>
 
@@ -36,8 +86,12 @@ export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
             <div className="w-14 h-14 bg-gradient-to-br from-green-400 to-emerald-400 rounded-xl flex items-center justify-center mx-auto mb-4">
               <Gift className="w-7 h-7 text-slate-900" />
             </div>
-            <h3 className="font-bold text-lg mb-2">Бонус за раннюю регистрацию</h3>
-            <p className="text-slate-300 text-sm">Скидка 15% при оплате в течение 3 дней после вебинара</p>
+            <h3 className="font-bold text-lg mb-2">
+              Бонус за раннюю регистрацию
+            </h3>
+            <p className="text-slate-300 text-sm">
+              Скидка 15% при оплате в течение 3 дней после вебинара
+            </p>
           </div>
 
           <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
@@ -45,21 +99,29 @@ export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
               <Users className="w-7 h-7 text-slate-900" />
             </div>
             <h3 className="font-bold text-lg mb-2">Всего 7 мест</h3>
-            <p className="text-slate-300 text-sm">Мы работаем с небольшими группами для лучшего качества</p>
+            <p className="text-slate-300 text-sm">
+              Мы работаем с небольшими группами для лучшего качества
+            </p>
           </div>
 
           <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center">
             <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-400 rounded-xl flex items-center justify-center mx-auto mb-4">
               <Clock className="w-7 h-7 text-slate-900" />
             </div>
-            <h3 className="font-bold text-lg mb-2">Старт через 14 дней</h3>
-            <p className="text-slate-300 text-sm">Успей подготовиться и начать учиться вместе с группой</p>
+            <h3 className="font-bold text-lg mb-2">
+              Старт через <Countdown /> дней
+            </h3>
+            <p className="text-slate-300 text-sm">
+              Успей подготовиться и начать учиться вместе с группой
+            </p>
           </div>
         </div>
 
         <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 rounded-3xl p-8 md:p-12">
           <div className="text-center">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Что будет на бесплатном вебинаре?</h3>
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+              Что будет на бесплатном вебинаре?
+            </h3>
             <div className="grid sm:grid-cols-2 gap-4 text-left mb-8 max-w-2xl mx-auto">
               {[
                 'Разбор программы курса и проектов',
@@ -67,12 +129,22 @@ export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
                 'Демо-урок по JavaScript',
                 'Ответы на все твои вопросы',
                 'Знакомство с преподавателями',
-                'Информация о рассрочке и скидках',
+                'Как быстро освоить инженерное мышление',
               ].map((item, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    <svg
+                      className="w-4 h-4 text-slate-900"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={3}
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                   </div>
                   <span className="text-slate-200">{item}</span>
@@ -89,7 +161,8 @@ export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
             </button>
 
             <p className="text-slate-400 text-sm mt-6">
-              Вебинар пройдет онлайн. После регистрации вы получите ссылку на почту.
+              Вебинар пройдет онлайн. После регистрации вы получите ссылку на
+              телеграмм или ватсапп.
             </p>
           </div>
         </div>
@@ -97,7 +170,11 @@ export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
         <div className="mt-12 text-center">
           <div className="inline-flex items-center gap-8 text-sm text-slate-300">
             <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+              <svg
+                className="w-5 h-5 text-green-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
                 <path
                   fillRule="evenodd"
                   d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -107,7 +184,11 @@ export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
               <span>Без спама</span>
             </div>
             <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+              <svg
+                className="w-5 h-5 text-green-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
                 <path
                   fillRule="evenodd"
                   d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -117,7 +198,11 @@ export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
               <span>Полностью бесплатно</span>
             </div>
             <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+              <svg
+                className="w-5 h-5 text-green-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
                 <path
                   fillRule="evenodd"
                   d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"

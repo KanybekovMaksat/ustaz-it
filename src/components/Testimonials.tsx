@@ -14,38 +14,22 @@ export default function Testimonials() {
       name: 'Жоомарт Алмазбеков',
       role: 'Full-Stack Developer',
       company: 'O mobile',
-      avatar: '👩‍💻',
+      avatar: '',
       text: 'Особенно ценю блок по инженерному мышлению. Это помогло мне не только в программировании, но и в повседневной жизни. Проекты в портфолио сыграли ключевую роль при трудоустройстве.',
       achievement: '',
     },
     {
       name: 'Адахан',
       role: 'Junior Developer',
-      company: 'IT Company',
-      avatar: '👨‍🎓',
+      company: 'Codify  ',
+      avatar: '',
       text: 'До курса я был полным новичком. Преподаватели объясняли все настолько понятно, что я быстро влился в процесс. Командная работа над проектами — бесценный опыт.',
       achievement: 'Начал карьеру с нуля',
     },
 
   ];
 
-  const stats = [
-    {
-      value: '80%',
-      label: 'выпускников нашли работу',
-      icon: Briefcase,
-    },
-    {
-      value: '250+',
-      label: 'успешных выпускников',
-      icon: TrendingUp,
-    },
-    {
-      value: '4.9/5',
-      label: 'средняя оценка курса',
-      icon: Star,
-    },
-  ];
+
 
   return (
     <section className="bg-white py-20 md:py-32">
@@ -96,8 +80,8 @@ export default function Testimonials() {
           ))}
         </div>
 
-        <div className="bg-gradient-to-br from-slate-900 to-blue-900 rounded-3xl p-8 md:p-12 text-white">
-          <div className="grid md:grid-cols-3 gap-8">
+        <div className="">
+          {/* <div className="grid md:grid-cols-3 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -109,9 +93,9 @@ export default function Testimonials() {
                 <p className="text-slate-300">{stat.label}</p>
               </div>
             ))}
-          </div>
+          </div> */}
 
-          <div className="mt-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8">
+          {/* <div className="mt-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8">
             <div className="text-center">
               <h3 className="text-2xl font-bold mb-4">Примеры проектов выпускников</h3>
               <p className="text-slate-300 mb-6">
@@ -133,7 +117,7 @@ export default function Testimonials() {
                 ))}
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

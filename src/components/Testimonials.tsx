@@ -1,4 +1,4 @@
-import { Quote, Star, Briefcase, TrendingUp } from 'lucide-react';
+import { Quote, Star, Briefcase, TrendingUp } from 'lucide-react'
 
 export default function Testimonials() {
   const testimonials = [
@@ -6,7 +6,7 @@ export default function Testimonials() {
       name: 'Ормон Мамбеткулов',
       role: 'Frontend Developer',
       company: 'Comtehno',
-      avatar: '',
+      avatar: '/ormon.jpg',
       text: 'Курс полностью изменил мой подход к программированию. Я не просто научился писать код, но и понял, как мыслить системно. Сейчас работаю в стартапе и создаю свой проект.',
       achievement: 'Нашел работу после выпуска',
     },
@@ -14,7 +14,7 @@ export default function Testimonials() {
       name: 'Жоомарт Алмазбеков',
       role: 'Full-Stack Developer',
       company: 'O mobile',
-      avatar: '',
+      avatar: '/joomart.jpg',
       text: 'Особенно ценю блок по инженерному мышлению. Это помогло мне не только в программировании, но и в повседневной жизни. Проекты в портфолио сыграли ключевую роль при трудоустройстве.',
       achievement: '',
     },
@@ -22,14 +22,11 @@ export default function Testimonials() {
       name: 'Адахан',
       role: 'Junior Developer',
       company: 'Codify  ',
-      avatar: '',
+      avatar: '/adahan.jpg',
       text: 'До курса я был полным новичком. Преподаватели объясняли все настолько понятно, что я быстро влился в процесс. Командная работа над проектами — бесценный опыт.',
       achievement: 'Начал карьеру с нуля',
     },
-
-  ];
-
-
+  ]
 
   return (
     <section className="bg-white py-20 md:py-32">
@@ -42,7 +39,8 @@ export default function Testimonials() {
             </span>
           </h2>
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
-            Реальные истории людей, которые изменили свою жизнь благодаря обучению
+            Реальные истории людей, которые изменили свою жизнь благодаря
+            обучению
           </p>
         </div>
 
@@ -53,22 +51,34 @@ export default function Testimonials() {
               className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl p-8 border border-slate-200 hover:shadow-xl transition-all"
             >
               <div className="flex items-start gap-4 mb-6">
-                <div className="text-5xl">{testimonial.avatar}</div>
+                <img
+                  src={testimonial.avatar}
+                  className="w-[100px] h-[100px] rounded-full object-cover"
+                ></img>
                 <div className="flex-1">
-                  <h4 className="font-bold text-md text-slate-900">{testimonial.name}</h4>
+                  <h4 className="font-bold text-md text-slate-900">
+                    {testimonial.name}
+                  </h4>
                   <p className="text-slate-600">{testimonial.role}</p>
-                  <p className="text-sm text-slate-500">{testimonial.company}</p>
+                  <p className="text-sm text-slate-500">
+                    {testimonial.company}
+                  </p>
                 </div>
                 <Quote className="w-8 h-8 text-blue-200" />
               </div>
 
               <div className="flex gap-1 mb-4">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  <Star
+                    key={star}
+                    className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                  />
                 ))}
               </div>
 
-              <p className="text-slate-700 leading-relaxed mb-6">{testimonial.text}</p>
+              <p className="text-slate-700 leading-relaxed mb-6">
+                {testimonial.text}
+              </p>
 
               {/* <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg px-4 py-3">
                 <p className="text-sm text-green-700 font-semibold flex items-center gap-2">
@@ -121,5 +131,5 @@ export default function Testimonials() {
         </div>
       </div>
     </section>
-  );
+  )
 }

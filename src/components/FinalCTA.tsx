@@ -1,56 +1,48 @@
-import { ArrowRight, Clock, Users, Gift } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { ArrowRight, Clock, Users, Gift, Coins } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 interface FinalCTAProps {
-  onCTAClick: () => void;
+  onCTAClick: () => void
 }
 
 function Countdown() {
   // 🎯 Целевая дата (3 ноября 2025)
-  const targetDate = new Date('2025-11-03T00:00:00');
+  const targetDate = new Date('2025-11-03T00:00:00')
 
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-  });
+  const [timeLeft, setTimeLeft] = useState({ days: 0 })
 
   useEffect(() => {
     const updateCountdown = () => {
-      const now = new Date();
-      const diff = targetDate - now;
+      const now = new Date()
+      const diff = targetDate.getTime() - now.getTime()
 
       if (diff <= 0) {
-        setTimeLeft({ days: 0});
-        return;
+        setTimeLeft({ days: 0 })
+        return
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+      setTimeLeft({ days })
+    }
 
-      setTimeLeft({ days });
-    };
-
-    updateCountdown();
-    const timer = setInterval(updateCountdown, 1000);
-
-    return () => clearInterval(timer);
-  }, [targetDate]);
+    updateCountdown()
+    const timer = setInterval(updateCountdown, 1000)
+    return () => clearInterval(timer)
+  }, [targetDate])
 
   return (
     <>
       {timeLeft.days} {getDayWord(timeLeft.days)}
     </>
-  );
+  )
 }
 
-function getDayWord(n) {
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-
-  if (mod10 === 1 && mod100 !== 11) return 'день';
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return 'дня';
-  return 'дней';
+function getDayWord(n: number) {
+  const mod10 = n % 10
+  const mod100 = n % 100
+  if (mod10 === 1 && mod100 !== 11) return 'день'
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return 'дня'
+  return 'дней'
 }
 
 export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
@@ -98,7 +90,7 @@ export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
             <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-xl flex items-center justify-center mx-auto mb-4">
               <Users className="w-7 h-7 text-slate-900" />
             </div>
-            <h3 className="font-bold text-lg mb-2">Всего 7 мест</h3>
+            <h3 className="font-bold text-lg mb-2">Всего 10 мест</h3>
             <p className="text-slate-300 text-sm">
               Мы работаем с небольшими группами для лучшего качества
             </p>
@@ -113,6 +105,26 @@ export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
             </h3>
             <p className="text-slate-300 text-sm">
               Успей подготовиться и начать учиться вместе с группой
+            </p>
+          </div>
+        </div>
+
+        {/* 💰 Блок о цене курса */}
+        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-center mb-16">
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-xl flex items-center justify-center">
+              <Coins className="w-7 h-7 text-slate-900" />
+            </div>
+            <h3 className="text-2xl font-bold text-white mt-2">
+              Стоимость курса
+            </h3>
+            <p className="text-slate-300 text-lg">
+              <span className="font-semibold text-white">8 000 сом</span> за
+              месяц обучения
+            </p>
+            <p className="text-slate-300 text-sm">
+              При хорошем обучении —{' '}
+              <span className="text-emerald-400 font-semibold">скидка 20%</span>
             </p>
           </div>
         </div>
@@ -162,58 +174,34 @@ export default function FinalCTA({ onCTAClick }: FinalCTAProps) {
 
             <p className="text-slate-400 text-sm mt-6">
               Вебинар пройдет онлайн. После регистрации вы получите ссылку на
-              телеграмм или ватсапп.
+              телеграм или ватсап.
             </p>
           </div>
         </div>
 
         <div className="mt-12 text-center">
           <div className="inline-flex items-center gap-8 text-sm text-slate-300">
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5 text-green-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Без спама</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5 text-green-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Полностью бесплатно</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5 text-green-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Без обязательств</span>
-            </div>
+            {['Без спама', 'Полностью бесплатно', 'Без обязательств'].map(
+              (text, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <svg
+                    className="w-5 h-5 text-green-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>{text}</span>
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }
